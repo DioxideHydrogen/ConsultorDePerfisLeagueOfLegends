@@ -1,0 +1,22 @@
+{
+    "name": "professorjamesbach/consultordeperfisleagueoflegends",
+    "description": "ConsultorDePerfisLeagueOfLegends",
+    "type": "project",
+    "require": {
+        "guzzlehttp/guzzle": "^6.3",
+        "twig/twig": "^2.11",
+        "vlucas/phpdotenv": "^3.6"
+    },
+    "authors": [
+        {
+            "name": "ProfessorJamesBach",
+            "email": "ProfessorJamesBach@github.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "ProfessorJamesBach\\": "src/"
+        }
+    }
+}

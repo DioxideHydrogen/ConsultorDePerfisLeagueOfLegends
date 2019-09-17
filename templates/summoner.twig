@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>TitaniumGG</title>
+	<link rel="stylesheet" href="css/summoner.css" type="text/css"/>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Noto+Sans+HK&display=swap" rel="stylesheet">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+	<style>body { background-color:#D3D3D3; }</style>
+</head>
+<body>
+	<div id="main">
+		<div id="summonerInfos" align="center">
+				<p id="summonerName" style="font-family: 'Noto Sans HK', sans-serif; font-weight: bold;">{{ summoner.name }}</p>
+				<img src="{{ summoner.profileIconUrl }}" id="summonerIcon" style="width: 150px; height: 150px; border-radius: 50%;"/><br>
+				<p id="summonerLevel" style="font-family: 'Noto Sans HK', sans-serif; font-weight: bold;">{{ summoner.level }}</p>
+				<label>RANK:</label><label id="summonerRank" style="font-weight: bold;">{{ rank.tier }} {{ rank.rank }}</label><br>
+				{# TODO: Rank image #}
+				<button type="button" class="btn btn-success">{{ rank.wins }} vitórias</button><label class="x">X</label><button type="button" class="btn btn-danger">{{ rank.losses }} derrotas</button><br>
+			</div>
+		<div id="result" style="margin-top: 4em;">
+			<div id="maestrys" style="position:absolute;" align="center">
+				{% for champion in masteries.champions %}
+					{% set name = riot.championNameById(champion.id) %}
+					{% set key = riot.championKeyById(champion.id) %}
+					<div id="{{ champion.id }}" style='margin-left:20px;display:inline-block;'>
+						<label id='champName' style='text-transform: uppercase; font-weight: bold;'>{{ name }}</label><br>
+						<img class='iconChampion' src="{{ champion.iconUrl(key) }}" id="{{ champion.id }}"
+							 onmouseover="this.src='{{ masteries.getIconUrl(champion.level) }}'"
+							 onmouseout="this.src='{{ champion.iconUrl(key) }}'" style='border-radius:60%;'/><br>
+						<label id='score' style=''>{{ champion.points }}</label>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</body>
+</html>
